@@ -1,0 +1,21 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local GameModeHandler = require(script.Handlers.GameModeHandler)
+local ArenaHandler = require(script.Handlers.ArenaHandler)
+local ArenaHandlerNew = require(script.Handlers.NewArenaHandler)
+local MatchQueueHandler = require(script.Handlers.MatchQueueHandler)
+local GameHandler = require(script.Handlers.GameHandler)
+local MatchFoundHandler = require(script.Handlers.MatchFoundHandler)
+local PartyHandler = require(script.Handlers.MatchPartyHandler)
+local PartyInvitationHandler = require(script.Handlers.PartyInvitationHandler)
+local MenuHandler = require(script.Handlers.MenuHandler)
+
+GameModeHandler.init()
+ArenaHandler.init()
+MatchQueueHandler.init()
+GameHandler.init()
+MatchFoundHandler.init()
+PartyHandler.init()
+PartyInvitationHandler.init()
+MenuHandler.init()

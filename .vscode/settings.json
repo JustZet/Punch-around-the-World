@@ -1,0 +1,37 @@
+{
+    "[lua]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua",
+        "editor.formatOnSave": true,
+        "lua.diagnostics.disable": [
+            "unused-local",
+            "unused-function"
+        ]
+    },
+    "[luau]": {
+        "editor.defaultFormatter": "JohnnyMorganz.stylua",
+        "editor.formatOnSave": true,
+        "lua.diagnostics.disable": [
+            "unused-local",
+            "unused-function"
+        ]
+    },
+
+    "workbench.editor.customLabels.patterns": {
+        "**/init.lua": "${dirname} (${filename}.${extname})",
+        "**/init.luau": "${dirname} (${filename}.${extname})"
+    },
+    "luau-lsp.completion.imports.enabled": true,
+    "luau-lsp.completion.autocompleteEnd": true,
+    "editor.semanticHighlighting.enabled": true,
+    
+    "robloxLsp.diagnostics.disable": [
+        "redefined-local",
+        "undefined-type",
+        "unused-local"
+    ],
+    "robloxLsp.diagnostics.globals": [
+        "HttpService",
+        "Workspace",
+        "PlayerTeamAvatarView"
+    ]
+}

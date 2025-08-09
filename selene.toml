@@ -1,0 +1,9 @@
+std = "roblox"
+
+[config]
+glob = "**.lua"
+
+[config.rules]
+unused_variable = "allow"
+unused_function = "warn"
+undefined_variable = "error"
