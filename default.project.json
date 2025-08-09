@@ -23,9 +23,8 @@
     "StarterPlayer": {
       "StarterPlayerScripts": {
         "Client": {
-          "$className": "StarterPlayerScripts",
-          "$ignoreUnknownInstances": true,
-          "$path": "src/Client"
+          "$path": "src/Client",
+          "$ignoreUnknownInstances": true
         }
       }
     }
