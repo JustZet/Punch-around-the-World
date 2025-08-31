@@ -30,14 +30,11 @@ function ArenaHandler.init()
 	frame = gui:WaitForChild("Frame")
 	mapFrame = frame:WaitForChild("MapFrame")
 	mapsFrame = frame:WaitForChild("Maps")
-
 	mapsBodyFrame = mapsFrame:WaitForChild("Body")
 	mapsItemsGrid = mapsBodyFrame:WaitForChild("Items")
-
 	mapNameLabel = mapFrame:WaitForChild("Name")
 	mapDateLabel = mapFrame:WaitForChild("Date")
 	mapWallpaper = mapFrame:WaitForChild("Wallpaper")
-
 	arenaTemplate = ReplicatedStorage.Assets.Gui:WaitForChild("Arena")
 	playerTemplate = ReplicatedStorage.Assets.Gui:WaitForChild("ArenaPlayerButton")
 	countDown = frame:WaitForChild("MapCountDown")
@@ -103,6 +100,12 @@ function ArenaHandler.populateCarousel()
 	for i, arena in ipairs(ArenaConfig.arenaList) do
 		ArenaHandler.createArenaCard(arena)
 	end
+
+	-- Set initial selection
+	if #ArenaConfig.arenaList > 0 then
+		selectedIndex = ArenaConfig.arenaList[1].Id  -- first arena
+		ArenaHandler.updateSelection()
+	end
 end
 
 function ArenaHandler.updateSelection()
@@ -112,12 +115,6 @@ function ArenaHandler.updateSelection()
 
 	local selectedTemplate = arenaButtons[selectedIndex]
 	if selectedTemplate then
-		local selectedCard = selectedTemplate.card
-		local relativeX = selectedCard.AbsolutePosition.X - mapsItemsGrid.AbsolutePosition.X
-		TweenService:Create(mapsItemsGrid, TweenInfo.new(0.3), {
-			CanvasPosition = Vector2.new(relativeX, 0),
-		}):Play()
-
 		ReplicatedStorage.RemoteEvents.Lobby.ShowGameSelect:FireServer(selectedTemplate.arena.Name)
 		mapNameLabel.Text = selectedTemplate.arena.Name or ""
 		mapNameLabel.TextColor3 = Color3.fromHex(selectedTemplate.arena.TextColor)

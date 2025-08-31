@@ -1,40 +1,56 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
 
 local PlayerModule = require(ReplicatedStorage.Shared.Modules.PlayerModule)
-local Arena = require(ReplicatedStorage.Shared.Models.Arena.Arena)
-
-
 
 -- Constructor
 local ArenaTemplate = {}
 ArenaTemplate.__index = ArenaTemplate
 
-export type ArenaTemplate = typeof(setmetatable({} :: {
-	arena: any,
-	card: Frame,
-	setSelected: (self: any, isSelected: boolean) -> (),
-	setPlayers: (self: any, playerIds: {number}) -> ()
-}, ArenaTemplate))
-
+export type ArenaTemplate = typeof(setmetatable(
+	{} :: {
+		arena: any,
+		card: Frame,
+		setSelected: (self: any, isSelected: boolean) -> (),
+		setPlayers: (self: any, playerIds: { number }) -> (),
+	},
+	ArenaTemplate
+))
 
 function ArenaTemplate.new(arena): ArenaTemplate
 	local self = setmetatable({}, ArenaTemplate)
 	self.arena = arena
-	self.card = script.Parent.ArenaTemplate:Clone() -- or however you clone it
+	self.card = ReplicatedStorage.Assets.Gui.ArenaButtonNew:Clone()
+	self.soundHover = ReplicatedStorage.Assets.Sounds.Hover:Clone()
+	self.soundHover.Parent = self.card
+
 	self:init()
 	return self
 end
 
 function ArenaTemplate:init()
-	self.nameLabel = self.card.Frame:WaitForChild("Name")
-	self.wallpaper = self.card.Frame:WaitForChild("ImageLabel")
-	self.iconsFrame = self.card.Frame:WaitForChild("PlayerIconsFrame")
-	self.stroke = self.card.Frame:FindFirstChildOfClass("UIStroke")
+	self.nameLabel = self.card.Canvas.TextLabel
+	self.wallpaper = self.card.Canvas.ImageLabel
+	self.iconsFrame = self.card.Canvas.PlayerIconsFrame
+	self.stroke = self.card.UIStroke
+	self.uiScale = self.card.UIScale
 
 	self.nameLabel.Text = self.arena.Name or ""
 	self.wallpaper.Image = self.arena.Icon or ""
 	self:setSelected(false)
+
+	self.card.AnchorPoint = Vector2.new(0.5, 0.5)
+	self.card.Position = UDim2.fromScale(0.5, 0.5)
+	-- Hover effect
+	self.card.MouseEnter:Connect(function()
+		self:onHover(true)
+		self.soundHover:Play()
+	end)
+
+	self.card.MouseLeave:Connect(function()
+		self:onHover(false)
+	end)
 end
 
 function ArenaTemplate:setSelected(isSelected)
@@ -66,4 +82,10 @@ function ArenaTemplate:setPlayers(playerIds)
 	end
 end
 
+function ArenaTemplate:onHover(isHovering)
+	local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	local goal = { Scale = isHovering and 1.05 or 1 }
+
+	TweenService:Create(self.uiScale, tweenInfo, goal):Play()
+end
 return ArenaTemplate

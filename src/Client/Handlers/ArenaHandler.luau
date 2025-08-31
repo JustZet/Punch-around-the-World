@@ -27,10 +27,8 @@ function ArenaHandler.init()
 	frame = gui:WaitForChild("Frame")
 	mapFrame = frame:WaitForChild("MapFrame")
 	mapsFrame = frame:WaitForChild("Maps")
-
 	mapsBodyFrame = mapsFrame:WaitForChild("Body")
 	mapsItemsGrid = mapsBodyFrame:WaitForChild("Items")
-
 	mapNameLabel = mapFrame:WaitForChild("Name")
 	mapDateLabel = mapFrame:WaitForChild("Date")
 	mapWallpaper = mapFrame:WaitForChild("Wallpaper")

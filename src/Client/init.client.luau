@@ -12,7 +12,7 @@ local PartyInvitationHandler = require(script.Handlers.PartyInvitationHandler)
 local MenuHandler = require(script.Handlers.MenuHandler)
 
 GameModeHandler.init()
-ArenaHandler.init()
+ArenaHandlerNew.init()
 MatchQueueHandler.init()
 GameHandler.init()
 MatchFoundHandler.init()
