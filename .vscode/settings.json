@@ -5,7 +5,10 @@
         "lua.diagnostics.disable": [
             "unused-local",
             "unused-function"
-        ]
+        ],
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
     },
     "[luau]": {
         "editor.defaultFormatter": "JohnnyMorganz.stylua",
@@ -20,18 +23,56 @@
         "**/init.lua": "${dirname} (${filename}.${extname})",
         "**/init.luau": "${dirname} (${filename}.${extname})"
     },
+    "editor.semanticHighlighting.enabled": true,
+
+    "robloxLsp.misc.serverPort": 6000,
+
+    "luau-lsp.plugin.port":8000,
+    "luau-lsp.plugin.enabled": true,
+    "luau-lsp.types.strict": true,
+    "luau-lsp.server.enabled": true,
+    "luau-lsp.server.autoStart": true,
+    "luau-lsp.sourcemap.enabled": true,
+    "luau-lsp.sourcemap.rojo": true,
+    "luau-lsp.platform.type": "roblox",
     "luau-lsp.completion.imports.enabled": true,
     "luau-lsp.completion.autocompleteEnd": true,
-    "editor.semanticHighlighting.enabled": true,
-    
-    "robloxLsp.diagnostics.disable": [
-        "redefined-local",
-        "undefined-type",
-        "unused-local"
-    ],
-    "robloxLsp.diagnostics.globals": [
-        "HttpService",
-        "Workspace",
-        "PlayerTeamAvatarView"
-    ]
+    // "luau-lsp.diagnostics.disable": [
+    //     "redefined-local",
+    //     "undefined-type",
+    //     "unused-local"
+    // ],
+    // "luau-lsp.diagnostics.globals": [
+    //     "HttpService",
+    //     "Workspace",
+    //     "PlayerTeamAvatarView",
+    //     "game",
+    //     "script",
+    //     "workspace",
+    //     "Players",
+    //     "ReplicatedStorage"
+    // ],
+    // "lua.diagnostics.globals": [
+    //     "game",
+    //     "script",
+    //     "workspace"
+    // ]
+
+    // "robloxLsp.types.roblox": true,
+    // "robloxLsp.types.strict": true,  // Start with false, enable later
+    // "robloxLsp.completion.imports.enabled": true,
+    // "robloxLsp.completion.autocompleteEnd": true,
+    // "robloxLsp.diagnostics.disable": [
+    //     "redefined-local",
+    //     "undefined-type",
+    //     "unused-local"
+    // ],
+    // "robloxLsp.diagnostics.globals": [
+    //     "HttpService",
+    //     "Workspace",
+    //     "PlayerTeamAvatarView"
+    // ],
+    // "Lua.diagnostics.globals": [
+    //     "game"
+    // ]
 }

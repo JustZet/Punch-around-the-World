@@ -1,3 +1,4 @@
+local Workspace = game:GetService("Workspace")
 local Signal = {}
 Signal.__index = Signal
 

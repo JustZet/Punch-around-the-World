@@ -4,5 +4,5 @@ local Arena = {
 	FUJI = "Fuji",
     RANDOM = "Random",
 }
-              
+
 return Arena

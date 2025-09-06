@@ -3,6 +3,7 @@ local ArenasEnum = require(game.ReplicatedStorage.Shared.Enums.Arena)
 local Weapon = require(game.ReplicatedStorage.Shared.Models.Weapon.Weapon)
 local Players = game:GetService("Players")
 
+
 local Arena = {}
 Arena.__index = Arena
 
@@ -17,6 +18,7 @@ export type Arena = {
 	Icon: string,
 	WallpaperWhited: string,
 }
+
 
 function Arena.new(
 	id: number,

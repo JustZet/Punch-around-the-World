@@ -7,6 +7,7 @@ Weapon.__index = Weapon
 
 export type Weapon = {
 	ID: number,
+	Tool: Tool,
 	Name: string,
 	Rarity: Rarities.Rarity,
 	Type: Types.WeaponType,
@@ -15,6 +16,7 @@ export type Weapon = {
 
 function Weapon.new(
 	id: number,
+	tool: Tool,
 	name: string,
 	rarity: Rarities.Rarity,
 	weaponType: Types.WeaponType,
@@ -22,6 +24,7 @@ function Weapon.new(
 ): Weapon
 	return setmetatable({
 		ID = id,
+		Tool = tool,
 		Name = name,
 		Rarity = rarity,
 		Type = weaponType,

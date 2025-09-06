@@ -28,6 +28,21 @@ end
 
 function GameService.start()
 
+	local function spawnInLobby(player)
+    	local spawnPoints = Workspace.Lobby.SpawnSurfaces:GetChildren()
+		if #spawnPoints > 0 then
+			local spawn = spawnPoints[math.random(1, #spawnPoints)]
+			player:LoadCharacter()
+			if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+				player.Character:MoveTo(spawn.Position)
+			end
+		end
+	end
+	Players.PlayerAdded:Connect(function(player)
+		spawnInLobby(player)
+
+	end)
+
 end
 
 function GameService.startMatch(arenaID: string, gameMode: GameMode.GameMode, team1: { Player }, team2: { Player })
@@ -46,6 +61,7 @@ function GameService.startMatch(arenaID: string, gameMode: GameMode.GameMode, te
 		arena = arenaData,
 		team1 = team1,
 		team2 = team2,
+		
 	})
 
 	if match then

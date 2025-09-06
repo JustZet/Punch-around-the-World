@@ -27,7 +27,7 @@ export type Game = {
 	arenaService: ArenaService.ArenaService,
 	team1: { Player },
     team2: { Player },
-	duration: number,
+	duration: number?,
     startTime: number?,
 	endTime: number?,
 }
